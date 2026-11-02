@@ -37,8 +37,16 @@ The policy training pipeline, numerical stability protection (NaN/Inf guardrails
 - Windows 10 / 11 (64-bit)
 - Python 3.10, 3.11, or 3.12 (ensure "Add python.exe to PATH" is checked)
 - NVIDIA GPU with CUDA support recommended (GTX 1060+ or RTX series)
+- Git for Windows: [git-scm.com](https://git-scm.com/download/win)
 
-### 2. Dependency Installation
+### 2. Clone Repository
+
+```bash
+git clone https://github.com/Selgm-ofic/Selgis-OSU-AI-Player.git
+cd Selgis-OSU-AI-Player
+```
+
+### 3. Dependency Installation
 
 #### Option A: Automated One-Click Installer (Recommended)
 Run the automated environment installer:
@@ -59,7 +67,7 @@ pip install -r requirements.txt
 pip install git+https://github.com/Selgm-ofic/Selgis-ML.git@v0.2.7.3
 ```
 
-### 3. Launching Interfaces
+### 4. Launching Interfaces
 
 Choose your preferred interface:
 - **Player GUI (Normis Edition)**: Double-click `run_player_gui.bat` (or `python normis_gui.py`)
@@ -74,10 +82,17 @@ Choose your preferred interface:
 > [!NOTE]
 > Все графические интерфейсы приложения изначально сделаны на русском языке, а переводить их на английский лень.
 
-### Установка
+### 1. Клонирование репозитория
+Откройте терминал (PowerShell или командную строку) и склонируйте проект:
+```bash
+git clone https://github.com/Selgm-ofic/Selgis-OSU-AI-Player.git
+cd Selgis-OSU-AI-Player
+```
+
+### 2. Установка зависимостей
 Для работы требуется Windows 10/11 (64-bit), Python 3.10–3.12 и видеокарта NVIDIA (рекомендуется).
 
-Самый простой вариант — запустить автоматический установщик:
+Самый простой вариант — запустить автоматический установщик в папке проекта:
 ```bat
 install_dependencies.bat
 ```
@@ -89,7 +104,7 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
 pip install -r requirements.txt
 ```
 
-### Запуск
+### 3. Запуск
 - **Интерфейс игрока (Нормис GUI)**: запустите `run_player_gui.bat` (выбор модели, чувствительности и привязка к окну osu!).
 - **Интерфейс исследователя (Dev GUI)**: запустите `run_gui.bat` (запись сессий, превью, рендерер Danser).
 - **Прямой запуск бота**: запустите `run.bat`.
