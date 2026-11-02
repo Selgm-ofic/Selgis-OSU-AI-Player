@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="repo%20assets/logo.png" alt="Selgis osu! AI Player" width="420" />
+</p>
+
 # Selgis osu! AI Player
 
 [![CI](https://github.com/Selgm-ofic/Selgis-OSU-AI-Player/actions/workflows/ci.yml/badge.svg)](https://github.com/Selgm-ofic/Selgis-OSU-AI-Player/actions/workflows/ci.yml)
@@ -139,6 +143,9 @@ python main.py build --source data/recordings --out data/dataset_v8
 ├── skills/                     # Agent skills and operational specifications
 │   └── selgis-osu-ai/          # AI Agent skill for Selgis osu! Player
 │       └── SKILL.md            # Tensor contracts, schemas, and workflows
+│
+├── repo assets/                # Visual repository assets
+│   └── logo.png                # Official project logo banner
 │
 ├── run_gui.bat                 # Launcher: Dev GUI
 ├── run_player_gui.bat          # Launcher: Player GUI (Normis Edition)
