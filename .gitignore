@@ -1,0 +1,71 @@
+# Bytecode and runtime caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Environments and IDEs
+.env
+.venv
+venv/
+ENV/
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Operating System artifacts
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Temporary & backup files
+*.bak
+*.tmp
+*.log
+*.swp
+*~
+
+# Video, audio, and high-volume media (> 50MB / GitHub limits)
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.wmv
+*.flv
+*.webm
+*.wav
+
+# Scratch & experimental test outputs
+scratch/*
+!scratch/.gitkeep
+
+# C# / .NET build outputs
+bin/
+obj/
+
+# Heavy datasets and raw recording streams
+data/recordings/
+data/synthetic_recordings/
+data/synthetic_renders/
+data/previews/*.mp4
+data/runs/
+data/cache/
+
+# Full binary training datasets (.npz archives)
+# Datasets should be generated locally via `python main.py build` or downloaded from external storage
+data/dataset_*/
+
+# Heavy / temporary model checkpoints (keep production weights in data/models/)
+data/models/test_*.pt
+data/models/*_ft.pt
+data/models/*-EXP*.pt
+data/models/synthetic_*.pt

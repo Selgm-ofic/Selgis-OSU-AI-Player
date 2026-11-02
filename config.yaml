@@ -1,0 +1,30 @@
+input:
+  width: 96
+  height: 72
+  channels: 2
+  temporal_ms: 16.67
+model:
+  heatmap_width: 24
+  heatmap_height: 18
+  hidden: 160
+  spatial_channels: 80
+training:
+  sequence: 6
+  stride: 2
+  batch: 128
+  epochs: 40
+  learning_rate: 0.001
+runtime:
+  inference_fps: 60
+  control_fps: 240
+  target_fps: 60
+playfield:
+  left: 295
+  top: 35
+  right: 1625
+  bottom: 1075
+gui:
+  selected_model: '[Osu_2] unet_policy_v7_2_best_xy.pt (1.5 MB)'
+  clicks_enabled: true
+  confidence: 0.0
+  source: dxgi

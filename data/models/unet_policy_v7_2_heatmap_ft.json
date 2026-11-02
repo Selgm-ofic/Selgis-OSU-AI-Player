@@ -1,0 +1,127 @@
+{
+  "source": "data/models/unet_policy_v7_2_best_xy.pt",
+  "baseline": {
+    "Bass_Slut__Original_Mix__Extra_142316": {
+      "count": 3813,
+      "mean": 0.04877663776278496,
+      "p95": 0.3173350691795349
+    },
+    "Embraced_by_the_Flame_Crimson_Shard_143532": {
+      "count": 2803,
+      "mean": 0.06133875250816345,
+      "p95": 0.21549877524375916
+    }
+  },
+  "baseline_p95_score": 0.26641692221164703,
+  "best_p95_score": 0.13210725039243698,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.2176578825790414,
+      "p95_score": 0.14816153794527054,
+      "held_out": {
+        "Bass_Slut__Original_Mix__Extra_142316": {
+          "count": 3813,
+          "mean": 0.03542286902666092,
+          "p95": 0.1640356183052063
+        },
+        "Embraced_by_the_Flame_Crimson_Shard_143532": {
+          "count": 2803,
+          "mean": 0.046633243560791016,
+          "p95": 0.13228745758533478
+        }
+      },
+      "seconds": 37.11
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.1725969285506308,
+      "p95_score": 0.13905023038387299,
+      "held_out": {
+        "Bass_Slut__Original_Mix__Extra_142316": {
+          "count": 3813,
+          "mean": 0.03237207606434822,
+          "p95": 0.14959730207920074
+        },
+        "Embraced_by_the_Flame_Crimson_Shard_143532": {
+          "count": 2803,
+          "mean": 0.04389790818095207,
+          "p95": 0.12850315868854523
+        }
+      },
+      "seconds": 24.84
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.1581272609049775,
+      "p95_score": 0.13520801067352295,
+      "held_out": {
+        "Bass_Slut__Original_Mix__Extra_142316": {
+          "count": 3813,
+          "mean": 0.03131448104977608,
+          "p95": 0.14222002029418945
+        },
+        "Embraced_by_the_Flame_Crimson_Shard_143532": {
+          "count": 2803,
+          "mean": 0.04237458109855652,
+          "p95": 0.12819600105285645
+        }
+      },
+      "seconds": 24.63
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.149973577762124,
+      "p95_score": 0.1331409588456154,
+      "held_out": {
+        "Bass_Slut__Original_Mix__Extra_142316": {
+          "count": 3813,
+          "mean": 0.030900804325938225,
+          "p95": 0.13851909339427948
+        },
+        "Embraced_by_the_Flame_Crimson_Shard_143532": {
+          "count": 2803,
+          "mean": 0.042175814509391785,
+          "p95": 0.1277628242969513
+        }
+      },
+      "seconds": 24.47
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.1448184915200381,
+      "p95_score": 0.13255058974027634,
+      "held_out": {
+        "Bass_Slut__Original_Mix__Extra_142316": {
+          "count": 3813,
+          "mean": 0.03041224367916584,
+          "p95": 0.1371927112340927
+        },
+        "Embraced_by_the_Flame_Crimson_Shard_143532": {
+          "count": 2803,
+          "mean": 0.0417858324944973,
+          "p95": 0.12790846824645996
+        }
+      },
+      "seconds": 24.42
+    },
+    {
+      "epoch": 6,
+      "train_loss": 1.1421355546349883,
+      "p95_score": 0.13210725039243698,
+      "held_out": {
+        "Bass_Slut__Original_Mix__Extra_142316": {
+          "count": 3813,
+          "mean": 0.03035983256995678,
+          "p95": 0.1360694169998169
+        },
+        "Embraced_by_the_Flame_Crimson_Shard_143532": {
+          "count": 2803,
+          "mean": 0.041923001408576965,
+          "p95": 0.12814508378505707
+        }
+      },
+      "seconds": 24.67
+    }
+  ]
+}

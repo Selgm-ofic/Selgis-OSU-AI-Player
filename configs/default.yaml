@@ -1,0 +1,86 @@
+source: auto
+obs:
+  device_name_hint: OBS Virtual Camera
+  camera_index: 1
+  try_indices:
+  - 1
+  - 0
+  - 2
+  - 3
+  width: 1920
+  height: 1080
+  fps: 60
+  fourcc: MJPG
+dxgi:
+  monitor: 1
+playfield:
+  left: 295
+  top: 35
+  right: 1625
+  bottom: 1075
+mapping:
+  osu_field:
+  - 295
+  - 35
+  - 1625
+  - 1075
+preprocess:
+  infer_width: 640
+  infer_height: 360
+  keep_aspect: false
+runtime:
+  buffer_size: 2
+  bench_frames: 200
+  control_hz: 500
+  aim_hz: 240
+  aim_speed_fields_per_s: 12.0
+  aim_target_ttl_ms: 150
+  aim_min_travel_ms: 20
+  aim_max_travel_ms: 140
+  aim_arrive_early_ms: 35
+  aim_target_ema: 0.25
+  click_latency_ms: 8.0
+skin:
+  name: bw-custom
+beatmaps:
+  dir: C:/Test OSU
+  preempt_ms: 1200.0
+recording:
+  dir: data/recordings
+  fps: 60
+  countdown_sec: 3
+  video_codec: mp4v
+  hotkey: F1
+yolo:
+  dir: data/yolo
+  box_scale: 1.15
+  spinner_box: 200.0
+detector:
+  input_mode: temporal3
+  realtime_fps: 50
+  temporal_lag_frames: 2
+  hybrid_fallback: false
+  agnostic_nms: true
+  preview_conf: 0.65
+  epochs: 60
+  batch: 32
+  imgsz: 256
+  patience: 15
+  device: 0
+  conf: 0.35
+  iou: 0.5
+  weights: data/models/osu_temporal_best_snapshot.pt
+synth:
+  fps: 60
+  stride: 3
+  max_frames_per_map: 1500
+  bg_shades:
+  - 12
+  - 18
+  - 25
+  noise: 4.0
+control:
+  keys:
+  - z
+  - x
+  mouse_sensitivity: 1.0
