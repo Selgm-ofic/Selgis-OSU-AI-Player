@@ -1,4 +1,4 @@
-# Selgis osu! AI Player (v8 R&D Engine)
+# Selgis osu! AI Player
 
 [![CI](https://github.com/Selgm-ofic/Selgis-OSU-AI-Player/actions/workflows/ci.yml/badge.svg)](https://github.com/Selgm-ofic/Selgis-OSU-AI-Player/actions/workflows/ci.yml)
 [![Powered by Selgis-ML](https://img.shields.io/badge/Powered%20by-Selgis--ML-7B2CBF.svg)](https://github.com/Selgm-ofic/Selgis-ML)

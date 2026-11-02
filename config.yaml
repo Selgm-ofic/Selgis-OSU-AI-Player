@@ -28,3 +28,8 @@ gui:
   clicks_enabled: true
   confidence: 0.0
   source: dxgi
+
+theme:
+  palette: neutral_gray
+  window_opacity: 1.0
+  wallpaper_brightness: 0.90

@@ -52,6 +52,27 @@ except ImportError:
 # Theme Palettes Configuration (Default: Obsidian & Platinum)
 # ==============================================================================
 THEMES = {
+    "neutral_gray": {
+        "name": "Нейтральный темно-серый",
+        "bg": "#1c1c1f",
+        "card_inner": "#28282c",
+        "card_hover": "#36363c",
+        "border": "#44444a",
+        "border_bright": "#767680",
+        "accent": "#d1d5db",
+        "accent_glow": "#f3f4f6",
+        "text_primary": "#f3f4f6",
+        "text_muted": "#9ca3af",
+        "btn_primary": "#3b3b42",
+        "btn_primary_hover": "#4b4b54",
+        "btn_stop": "#52525b",
+        "btn_stop_hover": "#71717a",
+        "badge_bg": "#28282c",
+        "badge_fg": "#e5e7eb",
+        "s_colors": ["#44444a", "#5e5e66", "#767680", "#9ca3af", "#d1d5db"],
+        "logo_depth": ["#28282c", "#36363c", "#44444a", "#5e5e66", "#767680"],
+        "logo_front": "#f3f4f6",
+    },
     "obsidian": {
         "name": "Обсидиан & Платина",
         "bg": "#08080a",
@@ -144,7 +165,7 @@ THEMES = {
 # ==============================================================================
 class DarkDropdown(tk.Frame):
     def __init__(self, parent, current_val: str, on_select, theme: dict = None, width: int = 240, **kwargs):
-        self.theme = theme or THEMES["obsidian"]
+        self.theme = theme or THEMES["neutral_gray"]
         super().__init__(parent, bg=self.theme["card_inner"], highlightthickness=1,
                          highlightbackground=self.theme["border"], **kwargs)
         self.on_select = on_select
@@ -275,7 +296,7 @@ class DarkDropdown(tk.Frame):
 # ==============================================================================
 class SemgaBannerCanvas(tk.Canvas):
     def __init__(self, parent, width: int = 1240, height: int = 70, theme: dict = None, **kwargs):
-        self.theme = theme or THEMES["obsidian"]
+        self.theme = theme or THEMES["neutral_gray"]
         super().__init__(parent, width=width, height=height, bg=self.theme["bg"],
                          highlightthickness=1, highlightbackground=self.theme["border"], **kwargs)
         self.w = width
@@ -601,7 +622,7 @@ class NormisApp(tk.Tk):
     def __init__(self):
         super().__init__()
         # Official Window Title
-        self.title("Semga inference app")
+        self.title("osu! AI Player")
         self.geometry("1240x820")
         self.minsize(1050, 720)
 
@@ -613,9 +634,9 @@ class NormisApp(tk.Tk):
 
         # Theme & Transparency State
         theme_cfg = self.cfg.get("theme", {})
-        self.theme_key = theme_cfg.get("palette", "obsidian")
+        self.theme_key = theme_cfg.get("palette", "neutral_gray")
         if self.theme_key not in THEMES:
-            self.theme_key = "obsidian"
+            self.theme_key = "neutral_gray"
         self.theme = THEMES[self.theme_key]
         self.window_opacity = float(theme_cfg.get("window_opacity", 1.0))
         self.wallpaper_brightness = float(theme_cfg.get("wallpaper_brightness", 0.90))

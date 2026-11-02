@@ -166,7 +166,7 @@ class VideoPlayer:
 class App(tk.Tk):
     def __init__(self, config_path):
         super().__init__()
-        self.title("osu_module — control center")
+        self.title("osu! player — control center")
         self.geometry("1380x900")
         self.minsize(1100, 740)
         self.protocol("WM_DELETE_WINDOW", self.destroy)

@@ -57,14 +57,14 @@ class ScreenRoiSelector:
         self.top.attributes("-fullscreen", True)
         self.top.attributes("-topmost", True)
         self.top.geometry(f"{self.screen_w}x{self.screen_h}+{self.mon_left}+{self.mon_top}")
-        self.top.configure(bg="#050508", cursor="crosshair")
+        self.top.configure(bg="#18181b", cursor="crosshair")
 
         if self.screenshot is None:
             self.top.attributes("-alpha", 0.45)
 
         self.canvas = tk.Canvas(
             self.top, width=self.screen_w, height=self.screen_h,
-            highlightthickness=0, bg="#050508", bd=0
+            highlightthickness=0, bg="#18181b", bd=0
         )
         self.canvas.pack(fill=tk.BOTH, expand=True)
 
@@ -284,7 +284,7 @@ class ScreenRoiSelector:
                 pass
 
         # Outer border and grid
-        accent = "#38bdf8"
+        accent = "#d1d5db"
         self.canvas.create_rectangle(l, t, r, b, outline=accent, width=2, tags="roi_layer")
         self.canvas.create_line(l, (t + b) // 2, r, (t + b) // 2, fill="#0ea5e9", dash=(3, 5), tags="roi_layer")
         self.canvas.create_line((l + r) // 2, t, (l + r) // 2, b, fill="#0ea5e9", dash=(3, 5), tags="roi_layer")
@@ -307,8 +307,8 @@ class ScreenRoiSelector:
         hx1 = hx0 + hud_w
         hy1 = hy0 + hud_h
 
-        self.canvas.create_rectangle(hx0, hy0, hx1, hy1, fill="#0b0f19", outline="#1e293b", width=2, tags="roi_layer")
-        self.canvas.create_rectangle(hx0 + 1, hy0 + 1, hx1 - 1, hy0 + 3, fill="#38bdf8", outline="", tags="roi_layer")
+        self.canvas.create_rectangle(hx0, hy0, hx1, hy1, fill="#18181b", outline="#3f3f46", width=2, tags="roi_layer")
+        self.canvas.create_rectangle(hx0 + 1, hy0 + 1, hx1 - 1, hy0 + 3, fill="#d1d5db", outline="", tags="roi_layer")
 
         coords_str = f"L: {l}   T: {t}   R: {r}   B: {b}   |   {w}×{h} px   |   Пропорция: {ratio_tag}"
         self.canvas.create_text(hx0 + 20, hy0 + 17, text=coords_str, anchor=tk.W, fill="#f8fafc", font=("Consolas", 10, "bold"), tags="roi_layer")
@@ -349,7 +349,7 @@ class ScreenRoiSelector:
             chip = chip.resize((120, 120), Image.Resampling.NEAREST)
             self.loupe_photo = ImageTk.PhotoImage(chip)
             self.canvas.create_image(lx, ly, image=self.loupe_photo, anchor=tk.NW, tags="loupe_layer")
-            self.canvas.create_rectangle(lx, ly, lx + 120, ly + 120, outline="#38bdf8", width=2, tags="loupe_layer")
+            self.canvas.create_rectangle(lx, ly, lx + 120, ly + 120, outline="#d1d5db", width=2, tags="loupe_layer")
             self.canvas.create_line(lx + 60, ly + 50, lx + 60, ly + 70, fill="#f43f5e", width=2, tags="loupe_layer")
             self.canvas.create_line(lx + 50, ly + 60, lx + 70, ly + 60, fill="#f43f5e", width=2, tags="loupe_layer")
 
@@ -366,21 +366,21 @@ class ScreenRoiSelector:
 # Main Recording and Live App
 # ==============================================================================
 class RecordingApp(tk.Tk):
-    # Obsidian Dark Design System Palette
-    THEME_BG = "#0f172a"          # Slate 900
-    THEME_CARD = "#1e293b"        # Slate 800
-    THEME_CARD_BORDER = "#334155" # Slate 700
-    THEME_FG = "#f8fafc"          # Slate 50
-    THEME_FG_MUTED = "#94a3b8"    # Slate 400
-    THEME_ACCENT = "#38bdf8"      # Sky 400
-    THEME_ACCENT_HOVER = "#0284c7"# Sky 600
-    THEME_ACTIVE = "#0ea5e9"      # Sky 500
-    THEME_SUCCESS = "#4ade80"     # Green 400
-    THEME_ERROR = "#f87171"       # Red 400
+    # Neutral Dark-Gray Palette
+    THEME_BG = "#1c1c1f"          # Neutral Dark Gray 900
+    THEME_CARD = "#28282c"        # Neutral Dark Card 800
+    THEME_CARD_BORDER = "#3f3f46" # Neutral Border 700
+    THEME_FG = "#f3f4f6"          # Neutral Light Text 50
+    THEME_FG_MUTED = "#9ca3af"    # Neutral Muted Text 400
+    THEME_ACCENT = "#d1d5db"      # Neutral Accent 300
+    THEME_ACCENT_HOVER = "#e5e7eb"# Neutral Accent Hover 200
+    THEME_ACTIVE = "#71717a"      # Neutral Active Gray 500
+    THEME_SUCCESS = "#22c55e"     # Green 500
+    THEME_ERROR = "#ef4444"       # Red 500
 
     def __init__(self):
         super().__init__()
-        self.title("osu! policy v3 / v8.5 — запись карт и управление")
+        self.title("osu! policy — запись карт и управление")
         self.geometry("1180x800")
         self.minsize(940, 640)
         self.protocol("WM_DELETE_WINDOW", self.close)

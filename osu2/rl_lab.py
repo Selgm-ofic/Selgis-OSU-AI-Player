@@ -506,7 +506,7 @@ ROLLOUT_LEN = 64
 class RLLab(tk.Tk):
     def __init__(self, episodes=2500):
         super().__init__()
-        self.title("osu! v5 — RL lab: Обучение и тонкая настройка моделей")
+        self.title("osu! RL lab — обучение и настройка моделей")
         self.geometry("860x740")
         self.episodes = episodes
         self.q = queue.Queue(maxsize=2)
