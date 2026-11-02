@@ -33,6 +33,7 @@ def main():
     t.add_argument("--weighting", default="decoupled", choices=["kendall", "fixed", "hybrid", "decoupled"])
     t.add_argument("--stage1-epochs", type=int, default=None, help="Epochs for Stage 1 Aim in two_stage_freeze")
     t.add_argument("--stage2-epochs", type=int, default=None, help="Epochs for Stage 2 Action in two_stage_freeze")
+    t.add_argument("--engine", default="selgis", choices=["selgis", "fast", "legacy"], help="Training engine (default: selgis)")
     t.add_argument("--legacy", action="store_true", default=False, help="Fall back to legacy slow training loop")
     q = sub.add_parser("bench")
     q.add_argument("--weights")
@@ -69,7 +70,11 @@ def main():
             out_path = a.out or str(root / f"data/models/{target_name}.pt")
         else:
             out_path = a.out or str(root / f"data/models/unet_policy_{target_name}.pt")
-        if getattr(a, "legacy", False):
+        engine = "legacy" if getattr(a, "legacy", False) else getattr(a, "engine", "selgis")
+        if engine == "selgis":
+            from osu2.selgis_train import train as selgis_train
+            train_fn = selgis_train
+        elif engine == "legacy":
             from osu2.train import train as legacy_train
             train_fn = legacy_train
         else:
