@@ -69,3 +69,7 @@ data/models/test_*.pt
 data/models/*_ft.pt
 data/models/*-EXP*.pt
 data/models/synthetic_*.pt
+
+# Test run artifacts
+data/models/selgis_checkpoints_*/
+data/models/test_*

@@ -23,6 +23,9 @@ from .model import PolicyLoss, TinyOsuPolicy, UNetTinyOsuPolicy, policy_loss
 from .train import load_policy
 
 logger = logging.getLogger(__name__)
+if not logging.getLogger().handlers:
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
+
 
 
 def build_outputs_tensor(pred: dict[str, torch.Tensor]) -> torch.Tensor:
@@ -83,6 +86,10 @@ def create_osu_forward_fn(
 
         outputs = build_outputs_tensor(pred)
         outputs.loss_dict = loss_dict
+        forward_fn.last_loss_dict = {
+            k: float(v.detach().cpu().item()) if hasattr(v, "detach") else float(v)
+            for k, v in loss_dict.items()
+        }
         return total_loss, outputs
 
     return forward_fn
