@@ -9,7 +9,7 @@ import time
 
 def print_banner():
     print("=" * 70)
-    print("      SEMGA INFERENCE APP — УСТАНОВКА ЗАВИСИМОСТЕЙ")
+    print("      SELGIS OSU AI PLAYER — УСТАНОВКА ЗАВИСИМОСТЕЙ")
     print("=" * 70)
     print(f"[INFO] Python: {sys.version.split()[0]} ({sys.executable})")
     print()
@@ -35,12 +35,12 @@ def main():
     print_banner()
 
     # 1. Upgrade pip
-    print("[1/4] Обновление пакетного менеджера pip...")
+    print("[1/5] Обновление пакетного менеджера pip...")
     run_pip(["install", "--upgrade", "pip", "--quiet"], "Обновление pip")
     print("[OK] Pip готов к работе.\n")
 
     # 2. Check NVIDIA GPU and install PyTorch
-    print("[2/4] Проверка графического процессора и установка PyTorch...")
+    print("[2/5] Проверка графического процессора и установка PyTorch...")
     has_gpu = has_nvidia_gpu()
     if has_gpu:
         print("[INFO] Обнаружена видеокарта NVIDIA!")
@@ -53,7 +53,7 @@ def main():
     print()
 
     # 3. Install core libraries
-    print("[3/4] Установка вспомогательных библиотек (OpenCV, MSS, DXCam, Pillow, PyYAML, PyWin32)...")
+    print("[3/5] Установка вспомогательных библиотек (OpenCV, MSS, DXCam, Pillow, PyYAML, PyWin32)...")
     core_pkgs = [
         "opencv-python>=4.5.0",
         "numpy>=1.23.0",
@@ -63,11 +63,21 @@ def main():
         "dxcam>=0.1.1",
         "pywin32>=306"
     ]
-    run_pip(["install"] + core_pkgs, "Установка зависимостей интерфейса")
+    run_pip(["install"] + core_pkgs, "Установка зависимостей интерфейса и захвата")
     print()
 
-    # 4. Self-test
-    print("[4/4] Итоговое тестирование установленных компонентов...")
+    # 4. Install Selgis ML framework
+    print("[4/5] Установка фреймворка машинного обучения Selgis-ML...")
+    try:
+        import selgis
+        print(f"[OK] Selgis-ML уже установлен (версия {getattr(selgis, '__version__', 'dev')})")
+    except ImportError:
+        print("[INFO] Selgis-ML не найден. Устанавливаем с GitHub (https://github.com/Selgm-ofic/Selgis-ML)...")
+        run_pip(["install", "git+https://github.com/Selgm-ofic/Selgis-ML.git"], "Установка Selgis-ML с GitHub")
+    print()
+
+    # 5. Self-test
+    print("[5/5] Итоговое тестирование установленных компонентов...")
     try:
         import torch
         import cv2
@@ -76,19 +86,22 @@ def main():
         import mss
         import dxcam
         import win32gui
+        import selgis
 
         cuda_ok = torch.cuda.is_available()
         device_str = torch.cuda.get_device_name(0) if cuda_ok else "CPU режим"
 
         print("=" * 70)
         print("  [УСПЕХ] ВСЕ ЗАВИСИМОСТИ УСПЕШНО УСТАНОВЛЕНЫ И ГОТОВЫ К РАБОТЕ!")
-        print(f"  • PyTorch:  {torch.__version__}")
+        print(f"  • PyTorch:    {torch.__version__}")
         print(f"  • Аппаратное ускорение: {'ВКЛЮЧЕНО (GPU: ' + device_str + ')' if cuda_ok else 'ВЫКЛЮЧЕНО (CPU)'}")
-        print(f"  • OpenCV:   {cv2.__version__}")
-        print(f"  • Pillow:   {PIL.__version__}")
+        print(f"  • Selgis-ML:  {getattr(selgis, '__version__', 'OK')}")
+        print(f"  • OpenCV:     {cv2.__version__}")
+        print(f"  • Pillow:     {PIL.__version__}")
         print("=" * 70)
         print("\nТеперь вы можете закрыть это окно и запустить:")
-        print("  ==> run_gui.bat\n")
+        print("  ==> run_player_gui.bat (Нормис GUI)")
+        print("  ==> run_gui.bat        (R&D GUI)\n")
     except Exception as e:
         print("=" * 70)
         print(f"  [ОШИБКА] При проверке библиотек возникло исключение: {e}")

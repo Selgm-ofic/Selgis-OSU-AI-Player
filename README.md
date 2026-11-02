@@ -1,15 +1,19 @@
 # Selgis osu! AI Player (v8 R&D Engine)
 
-[![CI](https://github.com/ByIBBL/selgis-osu-ai-player/actions/workflows/ci.yml/badge.svg)](https://github.com/ByIBBL/selgis-osu-ai-player/actions/workflows/ci.yml)
+[![CI](https://github.com/Selgm-ofic/Selgis-OSU-AI-Player/actions/workflows/ci.yml/badge.svg)](https://github.com/Selgm-ofic/Selgis-OSU-AI-Player/actions/workflows/ci.yml)
+[![Powered by Selgis-ML](https://img.shields.io/badge/Powered%20by-Selgis--ML-7B2CBF.svg)](https://github.com/Selgm-ofic/Selgis-ML)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
-Comprehensive deep-learning player, training pipeline, and live inference assistant for osu! based on UNet spatial-temporal heatmap and action prediction architectures.
+Comprehensive deep-learning visual agent, training pipeline, and live inference assistant for osu! based on spatial-temporal UNet and recurrent action prediction architectures.
+
+The policy training pipeline, numerical stability protection (NaN/Inf guardrails, loss spike rollback), convergence telemetry, and adaptive learning rate scheduling are built natively on top of the **[Selgis-ML Framework](https://github.com/Selgm-ofic/Selgis-ML)**.
 
 ---
 
 ## Key Features
 
+- **Powered by Selgis-ML**: Native integration with the [Selgis-ML](https://github.com/Selgm-ofic/Selgis-ML) training engine, providing automated gradient unscaling safety, loss spike detection, state rollback, and mixed-precision (FP16 AMP) optimization.
 - **End-to-End Visual Policy**: Directly maps high-speed screen captures (DXGI Desktop Duplication) to cursor trajectory and hit timing (Z/X).
 - **Dual Runtime Interfaces**:
   - **Normis Player GUI** (`run_player_gui.bat`): Lightweight, user-friendly desktop interface with drag-and-drop ROI calibration, model selector, sensitivity tuning, and themes.
@@ -22,23 +26,56 @@ Comprehensive deep-learning player, training pipeline, and live inference assist
 ## Quick Start
 
 ### 1. Requirements
+
 - Windows 10 / 11 (64-bit)
-- Python 3.10, 3.11, or 3.12 (ensure "Add python.exe to PATH" is enabled)
+- Python 3.10, 3.11, or 3.12 (ensure "Add python.exe to PATH" is checked)
 - NVIDIA GPU with CUDA support recommended (GTX 1060+ or RTX series)
 
-### 2. Installation
+### 2. Dependency Installation
+
+#### Option A: Automated One-Click Installer (Recommended)
 Run the automated environment installer:
 ```bat
 install_dependencies.bat
 ```
-This script detects your GPU, installs PyTorch with CUDA hardware acceleration, and configures all required dependencies from `requirements.txt`.
+This script detects your GPU, installs PyTorch with CUDA hardware acceleration, configures all core libraries from `requirements.txt`, and installs the [Selgis-ML](https://github.com/Selgm-ofic/Selgis-ML) framework.
 
-### 3. Launching
+#### Option B: Manual Installation via pip
+```bash
+# 1. Install PyTorch with CUDA hardware acceleration (CUDA 12.1 / 11.8)
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+
+# 2. Install core dependencies from requirements.txt
+pip install -r requirements.txt
+
+# 3. Alternatively, install Selgis-ML directly from GitHub:
+pip install git+https://github.com/Selgm-ofic/Selgis-ML.git
+```
+
+### 3. Launching Interfaces
+
 Choose your preferred interface:
-- **Player GUI (Normis Edition)**: Double-click `run_player_gui.bat`
-- **Research & Recording GUI**: Double-click `run_gui.bat`
-- **Interactive CLI Setup**: Double-click `settings.bat`
-- **One-Click Live Bot**: Double-click `run.bat`
+- **Player GUI (Normis Edition)**: Double-click `run_player_gui.bat` (or `python normis_gui.py`)
+- **Research & Recording GUI**: Double-click `run_gui.bat` (or `python main.py gui`)
+- **Interactive CLI Setup**: Double-click `settings.bat` (or `python run_live.py --settings`)
+- **Direct Live Bot**: Double-click `run.bat` (or `python run_live.py`)
+
+---
+
+## Training Policies with Selgis-ML
+
+Training utilizes the unified `main.py` entry point with the `--engine selgis` backend (default):
+
+```bash
+# Train UNet v7.2 policy with Selgis-ML engine
+python main.py train --engine selgis --version v7_2 --dataset data/dataset_v8_combined_subset --epochs 40 --batch 128
+
+# Train UNet policy with Two-Stage Freeze transfer learning
+python main.py train --engine selgis --version v8_5 --method two_stage_freeze --epochs 40 --batch 128
+
+# Train on custom dataset with explicit learning rate and fp16
+python main.py train --engine selgis --version v7_2 --dataset data/dataset_v8 --lr 0.001 --batch 128
+```
 
 ---
 
@@ -62,7 +99,7 @@ To align the neural policy with your osu! playfield:
 
 ## CLI & Research Engine (`main.py`)
 
-The unified CLI entry point provides full control over data synthesis, training, and benchmarking:
+The unified CLI entry point provides complete control over data synthesis, training, and benchmarking:
 
 ```bash
 # Launch Dev GUI
@@ -71,14 +108,11 @@ python main.py gui
 # Launch Reinforcement Learning Lab
 python main.py rl --episodes 2500
 
-# Train UNet Policy (Two-Stage Freeze method)
-python main.py train --version v8_5 --method two_stage_freeze
-
 # Benchmark inference latency and mechanics
-python main.py bench --weights data/models/unet_policy_v8_5.pt
+python main.py bench --weights data/models/unet_policy_v7_2.pt
 
 # Evaluate accuracy against validation dataset
-python main.py evaluate --weights data/models/unet_policy_v8_5.pt
+python main.py evaluate --weights data/models/unet_policy_v7_2.pt --dataset data/dataset_v8_combined_subset
 
 # Build dataset from session recordings
 python main.py build --source data/recordings --out data/dataset_v8
@@ -94,7 +128,7 @@ python main.py build --source data/recordings --out data/dataset_v8
 ├── run_live.py                 # Live inference runner and settings console
 ├── install_helper.py           # Hardware-aware environment installer
 ├── config.yaml                 # Runtime and model configuration
-├── requirements.txt            # Python dependencies
+├── requirements.txt            # Python dependencies (including Selgis-ML)
 ├── LICENSE                     # MIT License
 ├── README.md                   # Project documentation
 │
@@ -112,7 +146,8 @@ python main.py build --source data/recordings --out data/dataset_v8
 │   ├── live.py                 # Core live inference loop
 │   ├── model.py                # UNet policy architectures & action heads
 │   ├── recording_gui.py        # Comprehensive R&D recording interface
-│   └── rl_lab.py               # Reinforcement learning simulation
+│   ├── rl_lab.py               # Reinforcement learning simulation
+│   └── selgis_train.py         # Selgis-ML Trainer integration
 │
 ├── osu_bot/                    # Lightweight client library
 │   ├── capture.py              # DXGI Desktop Duplication & screen capture
@@ -132,7 +167,8 @@ python main.py build --source data/recordings --out data/dataset_v8
 │   └── watch.py                # File monitoring
 │
 ├── tests/                      # Automated unit test suite
-│   └── test_core.py            # Model and controller test cases
+│   ├── test_core.py            # Model and controller test cases
+│   └── test_selgis_train.py    # Selgis-ML integration test cases
 │
 └── .github/                    # CI workflows and issue templates
 ```
@@ -141,7 +177,7 @@ python main.py build --source data/recordings --out data/dataset_v8
 
 ## Testing
 
-Execute the test suite locally:
+Execute the automated test suite locally:
 ```bash
 python -m unittest discover tests
 ```

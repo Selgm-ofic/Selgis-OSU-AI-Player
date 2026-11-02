@@ -1,4 +1,15 @@
-numpy
-opencv-python
-torch
-PyYAML
+# Core deep learning and computer vision
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.23.0
+opencv-python>=4.5.0
+pillow>=9.0.0
+PyYAML>=6.0
+
+# High-performance screen capture and input controller (Windows)
+mss>=9.0.0
+dxcam>=0.1.1
+pywin32>=306
+
+# Selgis ML Training & Stability Framework
+selgis @ git+https://github.com/Selgm-ofic/Selgis-ML.git
