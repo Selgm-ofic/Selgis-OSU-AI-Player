@@ -9,6 +9,9 @@ Comprehensive deep-learning visual agent, training pipeline, and live inference 
 
 The policy training pipeline, numerical stability protection (NaN/Inf guardrails, loss spike rollback), convergence telemetry, and adaptive learning rate scheduling are built natively on top of the **[Selgis-ML Framework](https://github.com/Selgm-ofic/Selgis-ML)**.
 
+> [!WARNING]
+> **Experimental Research Codebase**: Many features, pipelines, and experimental modules in this repository were created and tested strictly in local development environments. Certain functionalities may not work, may be incomplete, or may operate unexpectedly under different hardware setups, screen resolutions, display scaling, or game client configurations.
+
 ---
 
 ## Key Features
