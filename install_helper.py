@@ -67,13 +67,13 @@ def main():
     print()
 
     # 4. Install Selgis ML framework
-    print("[4/5] Установка фреймворка машинного обучения Selgis-ML...")
+    print("[4/5] Установка фреймворка машинного обучения Selgis-ML (v0.2.7.3)...")
     try:
         import selgis
         print(f"[OK] Selgis-ML уже установлен (версия {getattr(selgis, '__version__', 'dev')})")
     except ImportError:
-        print("[INFO] Selgis-ML не найден. Устанавливаем с GitHub (https://github.com/Selgm-ofic/Selgis-ML)...")
-        run_pip(["install", "git+https://github.com/Selgm-ofic/Selgis-ML.git"], "Установка Selgis-ML с GitHub")
+        print("[INFO] Selgis-ML не найден. Устанавливаем с GitHub (v0.2.7.3)...")
+        run_pip(["install", "git+https://github.com/Selgm-ofic/Selgis-ML.git@v0.2.7.3"], "Установка Selgis-ML с GitHub")
     print()
 
     # 5. Self-test

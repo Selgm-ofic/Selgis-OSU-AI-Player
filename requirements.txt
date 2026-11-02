@@ -11,5 +11,5 @@ mss>=9.0.0
 dxcam>=0.1.1
 pywin32>=306
 
-# Selgis ML Training & Stability Framework
-selgis @ git+https://github.com/Selgm-ofic/Selgis-ML.git
+# Selgis ML Training & Stability Framework (pinned to v0.2.7.3)
+selgis @ git+https://github.com/Selgm-ofic/Selgis-ML.git@v0.2.7.3

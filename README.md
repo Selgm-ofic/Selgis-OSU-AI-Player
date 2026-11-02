@@ -52,11 +52,11 @@ This script detects your GPU, installs PyTorch with CUDA hardware acceleration, 
 # 1. Install PyTorch with CUDA hardware acceleration (CUDA 12.1 / 11.8)
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
 
-# 2. Install core dependencies from requirements.txt
+# 2. Install core dependencies from requirements.txt (includes Selgis-ML v0.2.7.3)
 pip install -r requirements.txt
 
 # 3. Alternatively, install Selgis-ML directly from GitHub:
-pip install git+https://github.com/Selgm-ofic/Selgis-ML.git
+pip install git+https://github.com/Selgm-ofic/Selgis-ML.git@v0.2.7.3
 ```
 
 ### 3. Launching Interfaces
@@ -66,6 +66,34 @@ Choose your preferred interface:
 - **Research & Recording GUI**: Double-click `run_gui.bat` (or `python main.py gui`)
 - **Interactive CLI Setup**: Double-click `settings.bat` (or `python run_live.py --settings`)
 - **Direct Live Bot**: Double-click `run.bat` (or `python run_live.py`)
+
+---
+
+## Быстрый старт (RU)
+
+> [!NOTE]
+> Все графические интерфейсы приложения изначально сделаны на русском языке, а переводить их на английский лень.
+
+### Установка
+Для работы требуется Windows 10/11 (64-bit), Python 3.10–3.12 и видеокарта NVIDIA (рекомендуется).
+
+Самый простой вариант — запустить автоматический установщик:
+```bat
+install_dependencies.bat
+```
+Скрипт сам определит наличие видеокарты, установит PyTorch с поддержкой CUDA, все необходимые библиотеки и зафиксированную версию Selgis-ML (`v0.2.7.3`).
+
+При ручной установке:
+```bash
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+pip install -r requirements.txt
+```
+
+### Запуск
+- **Интерфейс игрока (Нормис GUI)**: запустите `run_player_gui.bat` (выбор модели, чувствительности и привязка к окну osu!).
+- **Интерфейс исследователя (Dev GUI)**: запустите `run_gui.bat` (запись сессий, превью, рендерер Danser).
+- **Прямой запуск бота**: запустите `run.bat`.
+- **Горячие клавиши в игре**: `F2` — включить/пауза управления ИИ, `F10` — аварийная остановка бота.
 
 ---
 
