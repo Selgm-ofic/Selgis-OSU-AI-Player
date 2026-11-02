@@ -132,8 +132,13 @@ python main.py build --source data/recordings --out data/dataset_v8
 ├── install_helper.py           # Hardware-aware environment installer
 ├── config.yaml                 # Runtime and model configuration
 ├── requirements.txt            # Python dependencies (including Selgis-ML)
+├── AGENTS.md                   # AI Agent guidance and skill reference
 ├── LICENSE                     # MIT License
 ├── README.md                   # Project documentation
+│
+├── skills/                     # Agent skills and operational specifications
+│   └── selgis-osu-ai/          # AI Agent skill for Selgis osu! Player
+│       └── SKILL.md            # Tensor contracts, schemas, and workflows
 │
 ├── run_gui.bat                 # Launcher: Dev GUI
 ├── run_player_gui.bat          # Launcher: Player GUI (Normis Edition)
@@ -184,6 +189,15 @@ Execute the automated test suite locally:
 ```bash
 python -m unittest discover tests
 ```
+
+---
+
+## AI Agents & Automation
+
+This repository includes a dedicated operational skill for AI coding assistants and autonomous agents. The skill provides explicit 5D tensor input/output specifications, checkpoint dictionary schemas, training protocols, and pre-commit verification checklists:
+
+- **Agent Skill**: [`skills/selgis-osu-ai/SKILL.md`](skills/selgis-osu-ai/SKILL.md)
+- **Agent Entrypoint**: [`AGENTS.md`](AGENTS.md)
 
 ---
 
