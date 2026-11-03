@@ -9,6 +9,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
+<p align="center">
+  <img src="repo%20assets/preview.gif" alt="Selgis osu! AI Player Gameplay Preview" width="720" />
+</p>
+
 Comprehensive deep-learning visual agent, training pipeline, and live inference assistant for osu! based on spatial-temporal UNet and recurrent action prediction architectures.
 
 The policy training pipeline, numerical stability protection (NaN/Inf guardrails, loss spike rollback), convergence telemetry, and adaptive learning rate scheduling are built natively on top of the **[Selgis-ML Framework](https://github.com/Selgm-ofic/Selgis-ML)**.
@@ -188,7 +192,8 @@ python main.py build --source data/recordings --out data/dataset_v8
 │       └── SKILL.md            # Tensor contracts, schemas, and workflows
 │
 ├── repo assets/                # Visual repository assets
-│   └── logo.png                # Official project logo banner
+│   ├── logo.png                # Official project logo banner
+│   └── preview.gif             # 10-second gameplay preview animation
 │
 ├── run_gui.bat                 # Launcher: Dev GUI
 ├── run_player_gui.bat          # Launcher: Player GUI (Normis Edition)
